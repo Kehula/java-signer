@@ -15,7 +15,7 @@ public class Utils {
 	
 	private static void OverheatLock() throws InterruptedException {
 		for (;;) {
-			if (overheat.compareAndExchange(0, 1) == 0) {
+			if (overheat.compareAndExchange(0, 1) == 1) {
 				System.out.println("Overheat lock happened!");
 				Thread.sleep(1000);
 			}	else {
@@ -26,7 +26,7 @@ public class Utils {
 	
 	private static void OverheatUnlock() throws InterruptedException {
 		for (;;) {
-			if (overheat.compareAndExchange(1, 0) == 1) {
+			if (overheat.compareAndExchange(1, 0) == 0) {
 				System.out.println("Overheat unlock happened!");
 				Thread.sleep(1000);
 			} else {
